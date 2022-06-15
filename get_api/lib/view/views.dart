@@ -1,23 +1,31 @@
 import 'package:dio/dio.dart';
 import 'package:get_api/model/model.dart';
 
-List<PostModel> postModel = [];
+List<Product> postModel = [];
 
-Future<List<PostModel>> fetchData() async {
+Future<PostModel> fetchData() async {
   final Dio dio = Dio();
-  final response = await dio.get("https://dummyjson.com/posts");
-
+  print("hello");
+  final response = await dio.get("https://dummyjson.com/products");
+  print(response.statusCode);
   if (response.statusCode == 200) {
-    List<dynamic> values = [];
-    values = response.data;
-    if (values.isNotEmpty) {
-      for (int i = 0; i < values.length; i++) {
-        if (values[i] != null) {
-          postModel.add(PostModel.fromJson(values[i]));
-        }
-      }
-    }
-    return postModel;
+    var values;
+    print(response.statusCode);
+    values = PostModel.fromJson(response.data);
+    postModel = values.product;
+    print(values);
+    // if (values.isNotEmpty) {
+    //   print("##############################################");
+    //   for (int i = 0; i < values.length; i++) {
+    //     print("**********************************************");
+    //     if (values[i] != null) {
+    //       print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+    //       postModel.add(Product.fromJson(values[i]));
+    //       print(values);
+    //     }
+    //   }
+    // }
+    return values;
   } else {
     throw Exception("Unable to fetch data");
   }

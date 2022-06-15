@@ -3,13 +3,13 @@ import 'package:get_api/model/model.dart';
 import 'package:get_api/view/views.dart';
 
 class PostProvider extends ChangeNotifier {
-  List<PostModel>? _postModel;
+  PostModel? _postModel;
 
-  List<PostModel>? get postMod {
+  PostModel? get postMod {
     return _postModel;
   }
 
-  set post(List<PostModel>? pmodel) {
+  set post(PostModel? pmodel) {
     _postModel = pmodel;
   }
 
