@@ -31,9 +31,11 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (BuildContext context, index) {
               return Column(
                 children: [
-                  Text(postModel[index].brand ?? ""),
+                  Image.network(postModel[index].thumbNail ?? ""),
                   Text(postModel[index].title ?? ""),
-                  Text(postModel[index].category ?? ""),
+                  Text(postModel[index].description ?? ""),
+                  Text(postModel[index].brand ?? ""),
+                  Text("Price: \$ ${postModel[index].price.toString()}"),
                   SizedBox(
                     height: 10,
                   )
